@@ -1,0 +1,16 @@
+require("./user/user.model");
+require("./user/userSession.model");
+require("./video/video.model");
+require("./video/videoLike.model");
+require("./video/videoDislike.model");
+require("./video/videoComment.model");
+require("./video/videoCommentLike.model");
+require("./video/videoCommentDislike.model");
+require("./video/commentReply/commentReply.model");
+require("./video/commentReply/commentReplyLike.model");
+require("./author/author.model");
+require("./courses/course.model");
+require("./topic.model");
+require("./school/school.model");
+require("./Institude/Institude.model");
+require("./followers/follower.model");

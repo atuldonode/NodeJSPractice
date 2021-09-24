@@ -1,0 +1,20 @@
+{
+    "server": {
+        "port": 3333
+    },
+    "dbUrl": "mongodb://localhost:27017/sticfocus",
+    "secretKey": "sticfocus-app",
+    "staticFilesUrl": "sticfocus",
+    "smsKey": "",
+    "auth": {
+        "user": "info.whelthy.in@gmail.com",
+        "pass": "Password@123"
+    },
+    "aws": {
+        "Access_Key_ID": "AKIAU6AOEI4JPQ6C7NH6",
+        "Secret_Access_Key": "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",
+        "SPACES_ENDPOINT": "s3.ap-south-1.amazonaws.com",
+        "SPACES_URL": "https://sticfocus.s3.ap-south-1.amazonaws.com",
+        "BUCKET": "sticfocus"
+    }
+}
