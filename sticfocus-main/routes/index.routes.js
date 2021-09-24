@@ -17,6 +17,8 @@ module.exports = (app) => {
   let InstitudeRoute = require("./Institude/Institude.routes");
   let followerRoute= require("./followers/follower.routes");
 
+  let notificationRoute = require("./notifications/notificationlist.routes");
+
   app.use("/api/authentication", authRoute);
   app.use("/api/user", userRoute);
   app.use("/api/upload", uploadRoute);
@@ -34,4 +36,7 @@ module.exports = (app) => {
   app.use("/api/school",schoolRoute);
   app.use("/api/Institude",InstitudeRoute);
   app.use("/api/followers",followerRoute);
+
+  app.use("/api/notification", notificationRoute);
+
 };

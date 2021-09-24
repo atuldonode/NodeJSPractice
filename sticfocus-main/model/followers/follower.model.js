@@ -10,7 +10,7 @@ const follower = new Schema({
         type: mongoose.Types.ObjectId,
         ref: "User",
     },
-    followStatus: {
+    followStatus: { 
         type: String,
         enum: ["follow", "unFollow", "noFriend"],
         default: "noFriend"

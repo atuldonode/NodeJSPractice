@@ -14,3 +14,6 @@ require("./topic.model");
 require("./school/school.model");
 require("./Institude/Institude.model");
 require("./followers/follower.model");
+
+require("./notification/notificationList.model");
+require("./user/user.model")

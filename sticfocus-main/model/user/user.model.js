@@ -2,7 +2,7 @@ const mongoose = require("mongoose"),
   Schema = mongoose.Schema;
 
 const User = new Schema({
-  userType: String,
+  userType: String, 
   designation: {
     type: String,
     enum: [
