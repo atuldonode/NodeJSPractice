@@ -16,4 +16,5 @@ require("./Institude/Institude.model");
 require("./followers/follower.model");
 
 require("./notification/notificationList.model");
-require("./user/user.model")
+require("./category/category.model");
+require("./category/subcategory.model");

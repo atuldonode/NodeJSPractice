@@ -1,5 +1,4 @@
 let express = require("express");
-// let bodyParser = require("body-parser");
 let path = require("path");
 let database = require("./helper/database");
 let config = require("./config.json");

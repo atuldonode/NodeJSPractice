@@ -18,6 +18,8 @@ module.exports = (app) => {
   let followerRoute= require("./followers/follower.routes");
 
   let notificationRoute = require("./notifications/notificationlist.routes");
+  let categoryRoute = require("./category/category.routes");
+  let subCategoryRoute = require("./category/subcategory.routes");
 
   app.use("/api/authentication", authRoute);
   app.use("/api/user", userRoute);
@@ -38,5 +40,7 @@ module.exports = (app) => {
   app.use("/api/followers",followerRoute);
 
   app.use("/api/notification", notificationRoute);
+  app.use("/api/category", categoryRoute);
+  app.use("/api/subcategory", subCategoryRoute);
 
 };
