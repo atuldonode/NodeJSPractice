@@ -1,0 +1,72 @@
+extends ../layout
+
+
+block content
+        style.
+            .dropdown {
+                text-align: center;
+            }
+
+            input[type=checkbox] {
+                /* Double-sized Checkboxes */
+                -ms-transform: scale(2); /* IE */
+                -moz-transform: scale(2); /* FF */
+                -webkit-transform: scale(2); /* Safari and Chrome */
+                -o-transform: scale(2); /* Opera */
+                padding: 10px;
+            }
+
+        br
+
+        div.center-block.text-center.col-sm-12
+            h1.fw Recently Uploaded
+
+            br
+
+            // CATEGORY DROPDOWN
+            .search-upload-buttons-container
+                if category
+                    include ../viewPartials/categoryDropdown
+
+                // MEDIA TYPE DROPDOWN
+                include ../viewPartials/mediaDropdown
+
+                // SENSITIVITY TYPE DROPDOWN
+                include ../viewPartials/sensitivityFilterDropdown
+
+                // 5 LINK PAGINATION
+            include ../viewPartials/pagination
+
+            br
+
+        hr
+        div.uploads
+            if !isACategory || category == 'overview'
+                include ../viewPartials/categoryOverviews
+
+            else
+
+                div.category.col-sm-12
+                    h2.fw.categoryDisplayName(style="font-size:42px") #{categoryObj.displayName}
+                    br
+
+                each upload in uploads
+                    if upload.uploader
+                        div.col-xs-12.col-sm-6.col-md-6.col-lg-4(style="text-align:center;height:335px;margin-bottom:20px;")
+                            div(style="width:100%")
+                                include ../viewPartials/uploadThumbnail
+
+                                include ../viewPartials/uploadDetails
+
+        include ../viewPartials/adminSensitivityButtons
+
+        div.col-sm-12(style="display:inline")
+            include ../viewPartials/pagination
+
+
+        if user && user.role == 'admin'
+            include ../viewPartials/adminChangeRatingsJs
+
+        include ../viewPartials/changeSensitivityFilterJs
+
+        include ../viewPartials/mouseOverJavascript

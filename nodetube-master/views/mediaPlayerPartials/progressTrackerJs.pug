@@ -1,0 +1,65 @@
+script.
+
+  function getUpdateFromBackend(){
+    var csrf = '#{_csrf}'
+
+    var mediaUniqueTag = '#{upload.uniqueTag}'
+
+    var channelUrl = '#{upload.uploader.channelUrl}'
+
+    var data = {
+      _csrf: csrf,
+      uniqueTag: mediaUniqueTag,
+      channelUrl
+    }
+
+    var estimatedProcessingSecondsLeft = null;
+
+    $.ajax({
+      type: 'POST',
+      url: `/user/${channelUrl}/${mediaUniqueTag}/progress`,
+      data,
+      success: function (data) {
+        //- console.log(data);
+
+        // Shows undefined when at 100%
+        $('#processing').text(`${data.uploadProgress !== undefined ? data.uploadProgress : 'Completed'}`);
+
+        if(parseInt(data) == 100){
+          // TODO: this should be a u=t link
+          location.reload();
+        }
+
+      },
+      error: function (err) {
+        console.log(err);
+      }
+    });
+  }
+
+  // Calls `callback` after `delay` milliseconds. This repeats `repetitions` number of times.
+  function setIntervalX(callback, delay, repetitions) {
+    var x = 0;
+    var intervalId = window.setInterval(function () {
+
+        callback();
+
+        if (++x === repetitions) {
+            window.clearInterval(intervalId);
+        }
+    }, delay);
+  }
+
+  var processingStartTime = new Date();
+
+  // check if user is using ngrok
+  var userIsOnNgrokDomain = new URL(document.URL).hostname.slice(-8) === "ngrok.io";
+
+  // make the interval 7 seconds if the user is on ngrok to reduce timeout erros
+  var ngrokTimeoutAmountInSeconds = 7;
+  var normalNetworkTimeoutInSeconds = 3
+
+  var intervalSeconds = userIsOnNgrokDomain ? ngrokTimeoutAmountInSeconds : normalNetworkTimeoutInSeconds
+
+  getUpdateFromBackend();
+  setInterval(getUpdateFromBackend, 1000 * intervalSeconds)

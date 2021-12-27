@@ -1,0 +1,93 @@
+script.
+  // REACT FUNCTIONALITY
+  var activeEmoji = '#{currentReact}'
+
+  var upload = '#{upload._id}'
+  var csrf = '#{_csrf}'
+
+  $('.react img').on('release click', function (e) {
+
+    // dont move browser
+    e.preventDefault();
+
+    if(!user){
+      return swal({
+        text: "Please register to react to content",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Sign Up Now'
+      }).then(function (result) {
+        if (result.value) {
+          window.location.href = "/signup";
+        }
+      })
+    }
+
+
+    // change opacities
+    $('.react img').css({
+      opacity: '0.4'
+    })
+    $(this).css({
+      opacity: 0.85
+    })
+
+    // note active emoji
+    var oldEmoji = activeEmoji
+    var emoji = $(this).attr('id')
+    activeEmoji = emoji;
+
+    var unreact = (oldEmoji == activeEmoji) // the old react is the same as the new (user wants to remove react)
+
+    // decrement old emoji if needed
+    if(oldEmoji){
+      var oldEmojiValue = $('p.' + oldEmoji).text()
+      console.log(oldEmojiValue)
+
+      console.log('running!');
+
+      var decrementedValue = parseInt(oldEmojiValue) - 1
+      var updateEmoji = $('p.' + oldEmoji).text(decrementedValue)
+
+    }
+
+    // if the user removed the react, there is no active emoji
+    if(unreact) {
+      activeEmoji = null
+      $(".react img").css({ // reset all reacts opacity
+        opacity: 0.85
+      })
+
+      // if user chose a different react, update the new react value
+    } else {
+
+      console.log('running!!!');
+
+      var newEmojiValue = $('p.' + emoji).text()
+      var incrementedValue = parseInt(newEmojiValue) + 1
+      console.log(newEmojiValue)
+      var updatedEmojiValue = $('p.' + emoji).text(incrementedValue)
+    }
+
+    var data = {
+      _csrf : csrf,
+      emoji
+    }
+
+    $.ajax({
+      type: 'POST',
+      url: `/api/react/${upload}/${user}`,
+      data,
+      success: function (data) {
+        console.log(data);
+      },
+      error: function (err) {
+        console.log(err);
+      }
+    });
+
+
+    // app.post('/api/react/:upload/:user', internalApiController.react);
+
+
+  })

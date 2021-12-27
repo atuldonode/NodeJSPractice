@@ -1,0 +1,80 @@
+extends ../layout
+
+block content
+    style.
+
+    div.row
+        div.col-sm-2
+            h3.fw
+                a(href=`/account`) Account Page
+        //div.col-sm-2
+        //    h4
+        //        a(href="/account/viewHistory") View History
+        //div.col-sm-2
+        //    h4
+        //        a(href="/account/reactHistory") React History
+        //div.col-sm-2
+        //    h4
+        //        a.livestream-button Livestreaming
+        //        //a.livestreaming-link(href=`/user/${user.channelUrl}/live/staging`) Livestreaming
+        //div.col-sm-2
+        //    h4 Credit ($#{user.credit/100})
+        //div.col-sm-2
+        //    h4 Earnings ($#{user.receivedCredit / 100})
+        //div.col-sm-2
+        //  h3
+        //    a(href=`/account/creditHistory`) Credit History
+
+    p
+    hr
+
+
+    h1.fw.text-center Livestreaming
+
+    if user.plan == 'plus'
+
+        hr
+
+        h4.fw Please stream to the following RTMP url (don't share this publicly):
+
+        h4.fw(style="text-decoration:underline") #{livestreamRtmpDomain}
+
+        br
+        br
+
+        h4.fw You can view here (please give it about 10s to start)
+
+        a(href=`${livestreamViewingDomain}`)
+            h4.fw #{livestreamViewingDomain}
+
+        br
+        br
+
+        h4.fw Tip: If you have `ffmpeg` installed you can run the following command to stream a video from disk:
+        h4.fw(style="text-decoration:underline") ffmpeg -re -i PATH-TO-YOUR-VIDEO.mp4 -c copy -f flv #{livestreamRtmpDomain}
+
+
+        br
+        br
+
+        h4.fw Otherwise if you are streaming with OBS you can use the following:
+        h4.fw(style="display:inline;") Server: &nbsp
+        h4.fw(style="display:inline;text-decoration:underline") #{obsServer}
+        div(style="margin-top:7px")
+            h4.fw(style="display:inline;") Stream Key: &nbsp
+            h4.fw(style="display:inline;text-decoration:underline") #{obsStreamKey}
+
+
+
+
+
+        if user
+            script.
+              var username = '#{user.channelUrl}'
+              var uploadToken = '#{user.uploadToken}'
+
+
+    else
+        h5 Your livestreaming credentials will appear here upon purchasing Plus
+
+

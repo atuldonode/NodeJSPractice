@@ -1,0 +1,768 @@
+extends ../layout
+
+block content
+  style.
+    .stripe-button-el span {
+      display: block;
+      position: relative;
+      padding: 0 12px;
+      height: 30px;
+      line-height: 30px;
+      background: #1275ff;
+      background-image: -webkit-linear-gradient(#7dc5ee, #008cdd 85%, #30a2e4);
+      background-image: -moz-linear-gradient(#7dc5ee, #008cdd 85%, #30a2e4);
+      background-image: -ms-linear-gradient(#7dc5ee, #008cdd 85%, #30a2e4);
+      background-image: -o-linear-gradient(#7dc5ee, #008cdd 85%, #30a2e4);
+      background-image: -webkit-linear-gradient(#7dc5ee, #008cdd 85%, #30a2e4);
+      background-image: -moz-linear-gradient(#7dc5ee, #008cdd 85%, #30a2e4);
+      background-image: -ms-linear-gradient(#7dc5ee, #008cdd 85%, #30a2e4);
+      background-image: -o-linear-gradient(#7dc5ee, #008cdd 85%, #30a2e4);
+      background-image: linear-gradient(#7dc5ee, #008cdd 85%, #30a2e4);
+      font-size: 14px;
+      color: #fff;
+      font-weight: bold;
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+      -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25);
+      -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25);
+      -ms-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25);
+      -o-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25);
+      -webkit-border-radius: 4px;
+      -moz-border-radius: 4px;
+      -ms-border-radius: 4px;
+      -o-border-radius: 4px;
+      border-radius: 4px;
+    }
+
+    .stripe-button-el {
+      overflow: hidden;
+      display: inline-block;
+      visibility: visible !important;
+      background-image: -webkit-linear-gradient(#28a0e5, #015e94);
+      background-image: -moz-linear-gradient(#28a0e5, #015e94);
+      background-image: -ms-linear-gradient(#28a0e5, #015e94);
+      background-image: -o-linear-gradient(#28a0e5, #015e94);
+      background-image: -webkit-linear-gradient(#28a0e5, #015e94);
+      background-image: -moz-linear-gradient(#28a0e5, #015e94);
+      background-image: -ms-linear-gradient(#28a0e5, #015e94);
+      background-image: -o-linear-gradient(#28a0e5, #015e94);
+      background-image: linear-gradient(#28a0e5, #015e94);
+      -webkit-font-smoothing: antialiased;
+      border: 0;
+      padding: 1px;
+      text-decoration: none;
+      -webkit-border-radius: 5px;
+      -moz-border-radius: 5px;
+      -ms-border-radius: 5px;
+      -o-border-radius: 5px;
+      border-radius: 5px;
+      -webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
+      -moz-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
+      -ms-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
+      -o-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
+      box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
+      -webkit-touch-callout: none;
+      -webkit-tap-highlight-color: transparent;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      -o-user-select: none;
+      user-select: none;
+      cursor: pointer;
+    }
+
+  //form(action='https://www.paypal.com/cgi-bin/webscr', method='post')
+  //  // Identify your business so that you can collect the payments.
+  //  input(type='hidden', name='business', value='ceo@pew.tube')
+  //  // Specify a Subscribe button.
+  //  input(type='hidden', name='cmd', value='_xclick-subscriptions')
+  //  // Identify the subscription.
+  //  input(type='hidden', name='item_name', value="Recurring PewTube Account Top-Up")
+  //  //input(type='hidden', name='item_number', value='Purchase Acount Top-Up')
+  //  // Set the terms of the regular subscription.
+  //  input(type='hidden', name='a3', value='5.00')
+  //  input(type='hidden', name='p3', value='1')
+  //  input(type='hidden', name='t3', value='M')
+  //  // Set recurring payments until canceled.
+  //  input(type='hidden', name='src', value='1')
+  //  // Provide a drop-down menu option field.
+  //  input(type='hidden', name='on0', value='Format')
+  //  | Format
+  //  br
+  //  select(name='os0')
+  //    option(value='Select a format') -- Select a format --
+  //    option(value='plaintext') Plain text
+  //    option(value='HTML') HTML
+  //  br
+  //  // Display the payment button.
+  //  input(type='image', name='submit', src='https://www.paypalobjects.com/webstatic/en_US/i/btn/png/btn_subscribe_113x26.png', alt='Subscribe')
+  //  img(alt='', width='1', height='1', src='https://www.paypalobjects.com/en_US/i/scr/pixel.gif')
+
+
+
+  .container
+    include ./accountHeader
+
+
+    h1.fw.text-center Channel Overview
+    hr
+
+    // plus top section
+    if process.env.PLUS_ENABLED == 'true'
+      div.nt-plus.center-div.text-center
+
+        if user.plan == 'plus'
+          h2.fw.text-center(style="margin-bottom:16px") Upgraded To #{brandName} Plus
+
+          p Thank you so much for subscribing!
+          p Your support makes NewTube possible
+          p Please enjoy your new features:
+          //h4 Automatic YouTube backup functionality, unlisted uploads, private uploads, 2GB upload size
+          // h4 Livestreaming, unlisted uploads, private uploads, 2GB upload size
+          h4 Unlisted uploads, private uploads, 2GB upload size, livestreaming
+
+
+        else
+          h2.fw.text-center(style="margin-bottom:16px") Upgrade To #{brandName} Plus
+
+          //  - Unlisted, private and scheduled uploads
+            - Built in monetization via direct payments (COMING SOON)
+            - One-click complete YouTube backup (including future uploads)
+            - Access to NodeTube Recording Studio (COMING EVENTUALLY)
+
+            //- NewTube Recording Studio (Coming Soon)
+
+
+          p.fw(style="white-space:pre-line;margin-bottom:19px;font-size:19px;margin-top:23px;").
+            - Upload size limit raised from 500MB to 2GB
+
+            - Unlisted and private uploads
+
+            - Livestreaming with live chat
+
+            - Shortened Url: newtube.app/#{user.channelUrl} instead of newtube.app/user/#{user.channelUrl}
+
+            - $4.95/month, cancel at any time
+
+            - Support alternative tech that values your speech and privacy
+
+          // - Secure purchase through Stripe
+
+
+          //- One-click complete YouTube backup (including future uploads)
+
+
+
+          button.stripe-button-el#customButton(type="submit" class="stripe-button-el" style="visibility: visible;margin-bottom:20px;")
+            span(style="display: block; min-height: 30px;") Buy Now
+            // img(src="/images/stripe-white.png" style="max-width:200px")
+
+          //br
+          //br
+          //
+          //button.stripe-button-el#customButton(type="submit" class="stripe-button-el" style="visibility: visible;")
+          //  span(style="display: block; min-height: 30px;") Buy Month Subscription
+
+          //br
+          //br
+          //
+          //button.stripe-button-el#customButton(type="submit" class="stripe-button-el" style="visibility: visible;")
+          //  span(style="display: block; min-height: 30px;") Buy Year Subscription
+
+
+      // if you're allowed to
+    if  user.plan == 'plus' &&  user.privs.youtubeBackup
+      h3.ytBackup
+        br
+        br
+        br
+        h3.fw.text-center(style="") YouTube Backup
+        br
+
+        //form
+        //  .form-group
+        //    .col-sm-offset-3.col-sm-7
+        //      a.btn.btn-block.btn-google.btn-social(href='/auth/youtube')
+        //        i.fa.fa-youtube
+        //        | Sign in with YouTube
+        //
+        //br
+        //br
+
+      if !user.youtubeChannelId
+        form.form-horizontal
+          .form-group
+            label.col-sm-3.control-label(for='youtubeChannelId') YouTube Username Or Channel ID
+            .col-sm-7
+              input.form-control(type='youtubeChannelId', name='youtubeChannelId', id='youtubeChannelId')
+          .form-group
+            .col-sm-offset-3.col-sm-4
+              button.btn.btn-primary.saveChannelId(type='submit')
+                i.fa.fa-pencil
+                | Save Channel Username
+
+
+          br
+          div.form-group.disabled
+            label.col-sm-3.control-label(for='youtubeChannelId') Status
+            .col-sm-7.disabled
+              input.disable(type='checkbox', disabled='', data-toggle='toggle')
+
+      else
+        div(style="text-align:center")
+          label.control-label(for='updateStatus') YouTube Channel Id
+          h5 #{user.youtubeChannelId}
+          br
+
+          label.control-label(for='updateStatus') Status
+          br
+          if user.userSettings.backupOn == false
+            input(id="toggle-event" type='checkbox', data-toggle='toggle')
+          else if user.userSettings.backupOn == true
+            input(id="toggle-event" type='checkbox', checked='', data-toggle='toggle')
+          div(id="console-event")
+
+    br
+
+    h2.fw.text-center Channel Information
+      br
+      br
+
+    //form.upload-form(role="form" method="POST" enctype="multipart/form-data")
+    form.update-user-details-form.form-horizontal(role="form" method="POST" enctype="multipart/form-data" action=`${thumbnailServer}/account/profile`)
+      input(type="hidden" name="uploadToken" value=`${user.uploadToken}`)
+      .form-group
+        label.fw.col-sm-3.control-label(for='channelName' style="font-size:17px;margin-top:16px;") Channel Username
+        .col-sm-7
+          h3.fw= user.channelUrl
+
+      .form-group
+        label.fw.col-sm-3.control-label(for='channelName' style="font-size:17px;margin-top:-5px;") Channel Display Name
+        .col-sm-7
+          input.form-control(type='text', name='channelName', id='channelName', minlength=3, maxlength=25, value=user.channelName style="max-width:513px;")
+
+      .form-group
+        label.fw.col-sm-3.control-label(for='channelName' style="font-size:17px;margin-top:-5px;") Channel Description
+        .col-sm-7
+          textarea(id="description" name="description" maxlength='500' rows="7" cols="70" style="max-width:100%;color:#262525;") #{user.channelDescription}
+
+      // UPLOAD FORM IF NO THUMBNAIL
+      if !user.thumbnailUrl
+        .form-group
+          label.fw.col-sm-3.control-label(for='channelName' style="font-size:17px;margin-top:-5px;") Channel Thumbnail
+          .col-sm-7
+            // FILE INPUT BUTTON
+            input.center-block.text-center.fw(class="upload-file" data-max-size="500000000" type="file" name="filetoupload" accept="image/*" style="margin:0;margin-bottom:3px;border:0px;")
+
+        //div.form-group
+        //  div.col-sm-3.
+        //  p.col-sm-7(style="white-space:pre-line;margin-top:-15px;margin-bottom:-1px;").
+        //    Thumbnail dimensions:
+        //    width: up to 302px,
+        //    height: 168px
+
+      .form-group
+        .col-sm-offset-3.col-sm-4
+          button.fw.btn.btn.btn-primary(type='submit' style="font-size:16px;border-radius:5px;")
+            i.fa.fa-pencil
+            | Update Profile
+
+
+    // DISPLAY THUMBNAIL IF IT EXISTS
+
+    if user.thumbnailUrl || user.customThumbnail
+      br
+      br
+      div.col-sm-12(style="margin-bottom:100px")
+
+        h2.fw.text-center Channel Thumbnail
+        br
+        // TODO: Sub out thumbnail here
+
+        if user.customThumbnail
+          a(href=`${uploadServer}/${user.channelUrl}/${user.customThumbnail}`)
+            img.center-block.text-center(src=`${uploadServer}/${user.channelUrl}/${user.customThumbnail}` height="200px")
+        else
+          a(href=`${uploadServer}/${user.channelUrl}/${user.customThumbnail}`)
+            img.center-block.text-center(src=`${uploadServer}/${user._id}/unique.png` height="200px")
+
+
+        form.delete-user-thumbnail-form(action=`${thumbnailServer}/api/channel/thumbnail/delete` method="POST")
+          input(type='hidden', name='_csrf', value=_csrf)
+          input(type="hidden" name="channelUrl" value=`${user.channelUrl}`)
+          input(type="hidden" name="uploadToken" value=`${user.uploadToken}`)
+
+          button.fw.btn.btn.btn-danger.center-block.text-center(type='submit' style="margin-top:20px;border-radius:3px;")
+            i.fa.fa-pencil
+            | Delete
+
+    // EMAIL FUNCTIONALITY
+
+    if verifyEmailFunctionalityOn
+
+      // IF USER HAS CONFIRMED EMAIL
+      if user.email && user.emailConfirmed
+        div(style="text-align:center")
+          br
+          h2.fw.text-center Confirmed Email
+            br
+
+            h5.fw(style='font-size:19px;margin-top:18px;') Email Address : #{user.email}
+
+          // TODO: Have to finish this, can't think of a good design since I don't want users to spam emails
+          // TODO: also, the frontend is largely in place just needs a swal "Your email was deleted"
+          button.fw.btn.btn.btn-danger.btn-sm.center-block.text-center.deleteEmailButton(type='submit' style="margin-top:20px;border-radius:3px;")
+            i.fa.fa-pencil
+            | Delete
+        br
+
+      // IS USER HAS PENDING CONFIRMATION EMAIL
+      if user.email && !user.emailConfirmed
+        h3.fw.text-center Save Email
+          br
+        form.form-horizontal(action='/account/email', method='POST')
+          input(type='hidden', name='_csrf', value=_csrf)
+          .form-group
+            label.fw.col-sm-3.control-label(for='email') Email Address
+            .col-sm-7
+              input.form-control(type='email', name='email', id='email' value=`${user.email}`)
+          .form-group
+            .col-sm-offset-3.col-sm-4
+              button.btn.btn-primary(type='submit')
+                i.fa.fa-envelope
+                | Resend Confirmation Email
+
+      // IF USER HAS NOT SAVED EMAIL
+      if !user.email
+        h3.fw.text-center Save Email
+          br
+        form.form-horizontal(action='/account/email', method='POST')
+          input(type='hidden', name='_csrf', value=_csrf)
+          .form-group
+            label.fw.col-sm-3.control-label(for='email') Email Address
+            .col-sm-7
+              input.form-control(type='email', name='email', id='email')
+          .form-group
+            .col-sm-offset-3.col-sm-4
+              button.btn.btn-primary(type='submit')
+                i.fa.fa-envelope
+                | Send Confirmation Email
+    br
+    h3.fw.text-center Change Password
+    br
+
+    form.form-horizontal(action='/account/password', method='POST')
+      input(type='hidden', name='_csrf', value=_csrf)
+      .form-group
+        label.fw.col-sm-3.control-label(for='password' style="font-size:16px") New Password
+        .col-sm-7
+          input.form-control(type='password', name='password', id='password' style="max-width:513px;")
+      .form-group
+        label.fw.col-sm-3.control-label(for='confirmPassword' style="font-size:16px") Confirm Password
+        .col-sm-7
+          input.form-control(type='password', name='confirmPassword', id='confirmPassword' style="max-width:513px;")
+      .form-group
+        .col-sm-offset-3.col-sm-4
+          button.fw.btn.btn-primary(type='submit' style="margin-top:20px;border-radius:3px;")
+            i.fa.fa-lock
+            | Change Password
+
+    if process.env.PLUS_ENABLED === 'true' && ( user && user.plan === 'plus' && user.stripeCustomerId)
+      if !user.stripeSubscriptionCancellationDate && !user.stripeSubscriptionCancelled
+        br
+        br
+        h3.fw.text-center(style="margin-bottom:16px") Cancel #{brandName} Plus Subscription
+
+        div.nt-plus.center-div.text-center
+            p.fw(style="font-size:18px") Thank you for subscribing to NewTube Plus!
+            p.fw(style="font-size:18px") Your subscription was started on: #{moment(user.stripeSubscriptionCreationDate).format('MMMM Do YYYY HH:MM')}
+            p.fw(style="font-size:18px") Your subscription is set to renew on: #{moment(user.stripeSubscriptionRenewalDate).format('MMMM Do YYYY HH:MM')}
+            p.fw(style="font-size:18px") You can cancel your automatic renewal below, you will retain your Plus features until
+            p.fw(style="font-size:18px") the renewal date at which point you will be demoted to a free account.
+            //h4 Automatic YouTube backup functionality, unlisted uploads, private uploads, 2GB upload size
+            // h4 Livestreaming, unlisted uploads, private uploads, 2GB upload size
+
+            button.fw.btn.btn.btn-warning.btn-lg.center-block.text-center.cancel-subscription(type='submit' style="margin-top:20px;border-radius:3px;")
+              i.fa.fa-pencil
+              | Cancel Automatic Renewal
+      else if user.stripeSubscriptionCancellationDate && !user.stripeSubscriptionCancelled
+        br
+        br
+        h3.fw.text-center(style="margin-bottom:16px") #{brandName} Plus Auto-Renewal Cancelled
+
+        div.nt-plus.center-div.text-center
+          p.fw(style="font-size:18px") Your NewTube Plus subscription's autorenewal is cancelled.
+
+          p.fw.cancel-subscription(style="font-size:18px") You will retain your Plus features until #{moment(user.stripeSubscriptionCancellationDate).format('MMMM Do YYYY HH:MM')}
+
+          p.fw(style="font-size:18px") At that point you can resubscribe whenever you'd like.
+    if user.stripeSubscriptionCancelled
+      br
+      br
+      h3.fw.text-center(style="margin-bottom:16px") Your #{brandName} Plus Subscription was successfully cancelled
+      h4.fw.text-center(style="margin-bottom:16px") At any point you can start a new subscription again at the top of the page.
+
+
+  script.
+    $(function () {
+
+      var csrf = '#{_csrf}'
+
+      var data = {
+        _csrf: csrf
+      }
+
+      function getParameterByName(name, url) {
+        if (!url) url = window.location.href;
+        name = name.replace(/[\[\]]/g, "\\$&");
+        var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+                results = regex.exec(url);
+        if (!results) return null;
+        if (!results[2]) return '';
+        return decodeURIComponent(results[2].replace(/\+/g, " "));
+
+      }
+
+      var scrollToDiv = getParameterByName('to');
+
+
+      if (scrollToDiv) {
+        // scroll into view
+
+        setTimeout(function () {
+          if (scrollToDiv == 'cancel-subscription') {
+            swal('Automatic renewal is cancelled');
+          }
+        }, 1800)
+
+      }
+
+      $('.cancel-subscription').on('click', function(){
+        $.ajax({
+          type: 'POST',
+          // what is at this backend?
+          url: `/api/cancelPlusSubscription`,
+          data,
+          success: function (data) {
+            if (data == 'success') {
+              // TODO: setup the swal thing here
+
+              window.location.replace('/account?to=cancel-subscription');
+            } else {
+              swal(`Something didn't work, please contact ${brandName} at ${supportEmail} or via the widget in the bottom right corner`)
+            }
+            console.log(data);
+          },
+          error: function (err) {
+            console.log(err);
+          }
+        });
+      })
+
+      $('.deleteEmailButton').click(function () {
+        $.ajax({
+          type: 'POST',
+          // what is at this backend?
+          url: `/api/deleteUserEmail`,
+          data,
+          success: function (data) {
+            if (data == 'success') {
+              // TODO: setup the swal thing here
+
+              window.location = "/account?emailDeleted=true";
+            } else {
+              swal("Something didn't work, please contact NodeTube at ceo@nodetube.live or via the widget in the bottom right corner")
+            }
+            console.log(data);
+          },
+          error: function (err) {
+            console.log(err);
+          }
+        });
+      })
+
+    })
+
+  script.
+
+    //.delete-user-thumbnail-form
+
+    // capture submit
+    $('.update-user-details-form').submit(function (event) {
+
+      event.preventDefault()
+
+      console.log('running here')
+
+      var url = [location.protocol, '//', location.host, location.pathname].join('');
+
+      var $theForm = $(this);
+
+      var data = new FormData($theForm[0]);
+
+      // send xhr request
+      $.ajax({
+        type: $theForm.attr('method'),
+        url: $theForm.attr('action'),
+        data,
+        cache: false,
+        contentType: false,
+        processData: false,
+        success: function (data) {
+          // TODO: can turn into /user/anthony/tSIHmBf/edit?update=success?update=success
+          window.location = url + '?update=success'
+          console.log(data);
+        }
+      })
+      // prevent submitting again
+      return false;
+
+    });
+
+    // capture submit
+    $('.delete-user-thumbnail-form').submit(function (event) {
+
+      event.preventDefault()
+
+      console.log('running here')
+
+      var url = [location.protocol, '//', location.host, location.pathname].join('');
+
+      var $theForm = $(this);
+
+      var data = new FormData($theForm[0]);
+
+      // send xhr request
+      $.ajax({
+        type: $theForm.attr('method'),
+        url: $theForm.attr('action'),
+        data,
+        cache: false,
+        contentType: false,
+        processData: false,
+        success: function (data) {
+          // TODO: can turn into /user/anthony/tSIHmBf/edit?update=success?update=success
+          window.location = url + '?thumbnailDeleted=true'
+          console.log(data);
+        }
+      })
+      // prevent submitting again
+      return false;
+
+    });
+
+
+
+
+
+  if user
+    script.
+      var username = '#{user.channelUrl}'
+      var uploadToken = '#{user.uploadToken}'
+
+      console.log(username, uploadToken)
+
+      $('.livestream-button').on('click', function(){
+        swal('Please stream to rtmp://broadcast.nodetube.live/live/' + username  + '?key=' + uploadToken + ' \n\n You will be live at https://live.nodetube.live/User/' + username)
+      })
+
+  // stripe functionality
+  if process.env.PLUS_ENABLED == 'true'
+    script(src='https://checkout.stripe.com/checkout.js')
+
+    script.
+      var stripeToken = '#{stripeToken}'
+
+      var csrf = '#{_csrf}'
+
+      /** CONFIGURE STRIPE HANDLER **/
+      var handler = StripeCheckout.configure({
+        key: stripeToken,
+        image: 'https://newtube.app/images/full_size_logo.png',
+        locale: 'auto',
+        // bitcoin: true,
+        token: function (token) {
+
+          var data = {
+            _csrf: csrf,
+            token
+          }
+
+          $.ajax({
+            type: 'POST',
+            // what is at this backend?
+            url: `/api/purchase/plus`,
+            data,
+            success: function (data) {
+              if (data == 'success') {
+                window.location = "/account?to=nt-plus";
+              } else {
+                swal("Something didn't work, please contact NodeTube at ceo@nodetube.live or via the widget in the bottom right corner")
+              }
+              console.log(data);
+            },
+            error: function (err) {
+              console.log(err);
+            }
+          });
+          }
+        });
+
+      // CLICK HANDLER
+      document.getElementById('customButton').addEventListener('click', function (e) {
+        // Open Checkout with further options:
+        handler.open({
+          name: 'NewTube.',
+          description: 'One Month Of NewTube Plus',
+          amount: 495,
+          allowRememberMe: false
+          // email: "customer@email.com"
+        });
+        e.preventDefault();
+      });
+      // Close Checkout on page navigation:
+      window.addEventListener('popstate', function () {
+        handler.close();
+      });
+
+
+
+  script.
+    $(function () {
+
+      var plan = '#{user.plan}';
+
+      $('.livestreaming-link').on('click', function (e) {
+
+        console.log('clicked');
+
+        if(plan !== 'plus'){
+          e.preventDefault();
+          swal('Please purchase Plus to use livestreaming')
+        }
+      })
+
+      var backupOn = #{user.userSettings.backupOn}
+
+      function getParameterByName(name, url) {
+        if (!url) url = window.location.href;
+        name = name.replace(/[\[\]]/g, "\\$&");
+        var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+          results = regex.exec(url);
+        if (!results) return null;
+        if (!results[2]) return '';
+        return decodeURIComponent(results[2].replace(/\+/g, " "));
+
+      }
+
+      var updateSuccess = getParameterByName('update');
+
+      var thumbnailDeleted = getParameterByName('thumbnailDeleted');
+
+      if(thumbnailDeleted){
+        swal('The thumbnail has been deleted');
+      }
+
+      var emailDeleted = getParameterByName('emailDeleted');
+
+      if (emailDeleted) {
+        // scroll into view
+        swal('The email address has been removed')
+      }
+
+      if (updateSuccess) {
+        // scroll into view
+        swal('Your profile has been updated')
+      }
+
+      // SCROLL TO SELECTED DIV TO HELP USER EXPERIENCE
+      var scrollToDiv = getParameterByName('to');
+
+      // window.addEventListener("DOMContentLoaded", function () {
+        if (scrollToDiv) {
+          // scroll into view
+          setTimeout(function () {
+            $('.' + scrollToDiv).get(0).scrollIntoView();
+          }, 2000)
+        }
+      // });
+
+      var csrf = '#{_csrf}'
+
+      $('.saveChannelId').on('click', function (event){
+        event.preventDefault();
+
+        var youtubeChannelId =  $('#youtubeChannelId').val();
+
+
+        var data = {
+          _csrf: csrf,
+          youtubeChannelId : youtubeChannelId
+        }
+
+        $.ajax({
+          type: 'POST',
+          url: `/account/backup`,
+          data,
+          success: function (data) {
+            console.log(data);
+
+            if (data == 'not legit') {
+              swal('Sorry this is not a valid username or channel ID please try again')
+            } else if (data.message == 'updated channel id') {
+              // swal('Your channel ID was saved, you will start backing up within the hour') // on confirm, refresh
+
+
+              swal({
+                title: "Your channel ID was saved ", // note whether channel id or username
+                text: "Auto-backup will start within 60 minutes",
+                type: "success"
+              }, function () {
+                window.location = "/account?to=ytBackup";
+              });
+
+              console.log('saved by id')
+            } else if (data == 'saved channel username'){
+              swal('Sorry this is not a valid username or channel ID please try again')
+              console.log('saved by username')
+            } else {
+              swal('Sorry we didn\'t understand that')
+            }
+
+          },
+          error: function (err) {
+            console.log(err);
+          }
+        });
+
+      })
+
+
+      $('#toggle-event').change(function () {
+        console.log($(this).prop('checked'));
+
+        var checked = $(this).prop('checked');
+
+        var data = {
+          _csrf: csrf,
+          backupOn : checked
+        }
+
+        $.ajax({
+          type: 'POST',
+          url: `/account/backup`,
+          data,
+          success: function (data) {
+            console.log(data);
+
+          },
+          error: function (err) {
+            console.log(err);
+          }
+        });
+
+
+
+      })
+    })

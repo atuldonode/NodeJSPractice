@@ -1,0 +1,103 @@
+extends ../layout
+
+block content
+
+  style.
+    .lead-header {
+      margin-top: 137px;
+      margin-bottom: 47px;
+    }
+
+    .tagline-header {
+      margin-bottom: 70px;
+    }
+
+    .explainer {
+      margin-top: 15px;
+    }
+
+    .pitch-header {
+      font-size:30px;
+    }
+
+    .first-row {
+      margin-top:35px;
+    }
+
+    .second-row {
+      margin-top: 20px;
+    }
+
+    p.fw {
+      font-size: 15px;
+    }
+
+    /** Redesign for narrow devices **/
+
+    @media (max-width: 480px) {
+
+      .lead-header {
+        margin-top: 80px;
+      }
+
+      .pitch-header {
+        font-size: 22px;
+      }
+
+      .row .col-sm-4 {
+        margin-bottom:52px;
+      }
+
+      .first-row {
+        margin-bottom: 0px;
+      }
+
+      .second-row {
+        margin-top: 0px;
+      }
+      /* styles for mobile browsers smaller than 480px; (iPhone) */
+    }
+
+  div.container(style="text-align:center")
+
+    //.landingVideo(style="margin-top:0px;padding-top:70px;")
+    //  iframe.display-element(src='https://newtube.app/embed/ScMyHdB', frameborder='0', allowfullscreen='' style="width:80%;height:400px;")
+
+    h1.lead-header.fw Introducing #{brandName}
+    h2.tagline-header.fw An open-source YouTube alternative powered by Node.js
+    hr
+
+    .row.first-row
+      .col-sm-4
+        h2.pitch-header.fw No Email Required &nbsp
+          i.fa.fa-bolt
+        p.explainer.fw Start your channel on #{brandName}
+        p.fw without having to verify your email
+      .col-sm-4
+        h2.pitch-header.fw Video, Audio, Images &nbsp
+          i.fa.fa-thumbs-o-up
+        p.explainer.fw Over 30 file formats are supported
+        p.fw between video, audio and image uploads
+      .col-sm-4
+        h2.pitch-header.fw 100% Open Source &nbsp
+          i.fa.fa-space-shuttle
+        p.explainer.fw Create your own #{brandName} instance
+        p.fw in just minutes following our tutorials
+
+
+    .row.second-row
+      .col-sm-4
+        h2.pitch-header.fw #{channelAmount} Channels &nbsp
+          i.fa.fa-users
+        p.explainer.fw The number of creators who have
+        p.fw chosen #{brandName} for their media hosting
+      .col-sm-4
+        h2.pitch-header.fw #{mediaAmount} Uploads &nbsp
+          i.fa.fa-upload
+        p.explainer.fw The number of  times creators have
+        p.fw chosen #{brandName} for their content hosting
+      .col-sm-4
+        h2.pitch-header.fw #{viewAmount} Views &nbsp
+          i.fa.fa-video
+        p.explainer.fw The number of times people have
+        p.fw enjoyed the innovative new platform

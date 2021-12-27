@@ -1,0 +1,40 @@
+script.
+
+  // downloadFunctionalityJs
+
+  var downloadUrl = '#{serverToUse}/#{upload.uploader.channelUrl}/#{upload.uniqueTag}#{upload.fileExtension}'
+
+  var uploadType = '#{upload.fileType}'
+
+  if(uploadType=='video'){
+    downloadUrl = '#{serverToUse}/#{upload.uploader.channelUrl}/#{upload.uniqueTag}.mp4'
+  }
+
+  function downloadIt() {
+
+    // set the title for the upload, this only works if serving from the same host
+    if(uploadType=='video'){
+      var name = "#{upload.title}.mp4"
+    } else {
+      var name = "#{upload.title}#{upload.fileExtension}"
+    }
+
+    if (name && name !== '') {
+      var link = document.createElement('a');
+      link.download = name;
+
+      // TODO: If I'm serving from the same origin this will work
+      // link.href = '/images/twitter-share.jpg'
+      //link.href = '/user/#{upload.uploader.channelUrl}/#{upload.uniqueTag}#{upload.fileType}'
+
+      link.href = downloadUrl
+
+      link.click();
+    }
+  }
+
+  $('.download-button').click(function () {
+
+    downloadIt()
+
+  });

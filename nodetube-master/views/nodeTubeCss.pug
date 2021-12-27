@@ -1,0 +1,422 @@
+// doing this because otherwise it's too annoying with cloudflare caching
+style.
+
+    @import url('https://rsms.me/inter/inter.css');
+
+    html {
+        font-family: 'Inter', sans-serif;
+    }
+
+    @supports (font-variation-settings: normal) {
+        html {
+            font-family: 'Inter var', sans-serif;
+        }
+    }
+
+    .navbar-default .navbar-nav > li > a {
+        color: white;
+    }
+
+    .view-header {
+        display: inline;
+    }
+
+    /* 70 : 39 aspect ratio */
+
+    .border-preview {
+        border: 1px solid black;
+    }
+
+    .upload-title {
+        height: 89px;
+        overflow: hidden;
+        display: flex;
+        display: -webkit-flex;
+        width: 80%;
+        margin: 0 auto;
+    }
+
+    .title-anchor:hover {
+        text-decoration: none;
+        color: red;
+    }
+
+    .title-anchor {
+        text-decoration: none;
+    }
+
+    .upload-title-text {
+        max-height: 53px;
+        color: #bcbcbc;
+        font-size: 20px;
+        text-align: center;
+        margin: 0;
+        margin-top: 8px;
+        overflow: hidden;
+
+        font-weight: 300;
+    }
+
+    .upload-title-text:hover {
+        text-decoration: none
+        /*color:black;*/
+    }
+
+    .upload-user-text {
+        color: #c7c7c7 !important;
+        /*text-decoration:underline;*/
+    }
+
+    .upload-user-text:hover {
+        color: black;
+        /*text-decoration:underline;*/
+    }
+
+    .search-upload-buttons-container {
+        display: grid;
+        justify-content: center;
+        grid-gap: 10px;
+    }
+
+    @media (min-width: 480px) {
+        .search-upload-buttons-container {
+            grid-auto-flow: column;
+        }
+    }
+
+    .twenty-six {
+        font-size: 26px;
+    }
+
+    .upload-details {
+        width: 90%;
+        margin: 0 auto;
+        margin-top: -12px;
+    }
+
+    .views {
+        height: 30px;
+        display: flex;
+        display: -webkit-flex;
+    }
+
+    .views-text {
+        font-size: 14px;
+        text-align: center;
+        margin: auto;
+        color: rgba(0, 0, 0, 0.7);
+    }
+
+    .upload-file {
+        margin-right: 167px;
+        margin-bottom: 20px;
+        width: 490px;
+    }
+
+    .change-size-button {
+        display: inline-block;
+        margin: 10px;
+    }
+
+    .unclicked-emoji img {
+        opacity: 0.5;
+    }
+
+    /*.centerDropdown {*/
+    /*left: auto !important;*/
+    /*right: -25% !important;*/
+    /*}*/
+    /*.centerDropdown:after {*/
+    /*left: auto !important;*/
+    /*right: 45% !important;*/
+    /*}*/
+
+    .dropdown-menu > li > a {
+        color: #333333;
+    }
+
+    .vjs-slider {
+        height: 15px;
+    }
+
+    .plyr.plyr--video {
+        max-width: 100%;
+        margin: 0 auto;
+        border-radius: 5px;
+    }
+
+    .plyr.plyr__video-wrapper {
+        background: white;
+    }
+
+    .navbar-fixed-top .navbar-collapse, .navbar-fixed-bottom .navbar-collapse {
+        max-height: 381px;
+    }
+
+    .body {
+        background-color: #FAFAFA;
+    }
+
+    .preview-image {
+        width: inherit;
+        max-width: 405px;
+        height: 210px;
+        max-height: 210px;
+        border-radius: 7px;
+        max-width:100%;
+        /*border:1px solid white;*/
+    }
+
+    /* translate thing to make it centered even with overflow*/
+    @media (max-width: 347px) {
+        .preview-image {
+            max-width: 280px;
+            margin-left: 50%;
+            transform: translateX(-50%);
+        }
+    }
+
+    @media (min-width: 900px) {
+        .navbar-left {
+            float: left !important;
+        }
+
+        .navbar-right {
+            float: right !important;
+            margin-right: -95px;
+        }
+
+        .navbar-right ~ .navbar-right {
+            margin-right: 0;
+        }
+    }
+
+    @media (min-width: 1042px) {
+        .navbar-right {
+            margin-right: -28px;
+        }
+    }
+
+    /*.dropdown-menu {*/
+        /*min-width: 100px;*/
+        /*max-width: 100px;*/
+    /*}*/
+
+
+    /*1046*/
+
+
+    @media (min-width: 900px) {
+        .navbar-nav > li > a {
+            padding-left: 12px;
+            padding-right: 12px;
+        }
+    }
+
+    @media (max-width: 942px) {
+        .categoryDisplayName {
+            text-align: center;
+            margin-bottom: 30px;
+
+        }
+    }
+
+    .fw {
+        font-weight: 300;
+    }
+
+    .loginHeader {
+        font-size:18px;
+    }
+
+    .navbar-default .navbar-nav > li > a {
+        font-size:14px;
+    }
+
+
+    .dropdown-anchors {
+        font-size: 12px !important;
+        font-weight: 500 !important;
+        text-transform: uppercase !important;
+        transition: all 0.2s linear !important;
+        color: white !important;
+        font-weight:500 !important;
+    }
+
+    .dropdown-anchors:hover {
+        color: #4da5f4 !important;
+        background-color: transparent;
+    }
+
+    .brandName {
+        font-size:19px;
+    }
+
+    /* Dark mode: */
+    .dark-mode {
+        background-color: #141414 !important; //#1a1a1c; //rgba(11, 11, 12, 1); //#181817; //#292322; //rgb(40,44,52); rgb(33,37,43);
+        color: darkgray !important;
+    }
+
+    /* Light mode: */
+    .light-mode {
+        background-color: #fff !important; //#1a1a1c; //rgba(11, 11, 12, 1); //#181817; //#292322; //rgb(40,44,52); rgb(33,37,43);
+        color: black !important;
+    }
+
+    /* changes the dark mode button to look like a link*/
+    .link-button {
+        background: none!important;
+        border: none;
+        padding: 0!important;
+        outline:none;
+        /*optional*/
+        /*font-family: arial, sans-serif;*/
+        /*input has OS specific font-family*/
+        /*color: #069;*/
+        /*text-decoration: underline;*/
+        cursor: pointer;
+    }
+
+    .headroom--pinned {
+        display: block;
+    }
+
+    .headroom--unpinned {
+        display: none;
+    }
+
+    .upload-thumbnail {
+        display: block;
+    }
+
+    .image-container {
+        display:inline-block;
+        border:1px solid #5b5a5a;
+        margin:0 auto;
+        overflow:hidden;
+        border-radius:13px;
+        max-width: 370px;
+    }
+
+
+
+    .upload-thumbnail:hover {
+
+        /*transform: scale(1.05) translate(0px, 30px);*/
+
+        transform: scale(1.12);
+
+        -webkit-filter: brightness(120%);
+    }
+
+    .upload-thumbnail {
+        transition: transform .7s ease;
+    }
+
+    .holder {
+        overflow: hidden; /* [1.2] Hide the overflowing of child elements */
+        /*max-width:450px;*/
+    }
+
+    @media (max-width: 767px) {
+
+        .holder {
+            overflow: visible;
+        }
+    }
+
+    .plyr.plyr--video {
+        resize: both;
+
+        /*0.2*/
+        /*max-width: 97.5vw;*/
+        /*max-height: 98vh;*/
+
+        /*height: 82vh;*/
+
+        /* 0.1 */
+        /*width: 1409px;*/
+        /*height: 799px;*/
+    }
+
+    .container {
+
+    }
+
+    @media (min-width: 900px) {
+        .container {
+            width: inherit
+        }
+    }
+
+    @media (min-width: 1042px) {
+        .container {
+            width: inherit
+        }
+    }
+
+    @media (min-width: 1200px) {
+        .container {
+            width: inherit
+        }
+    }
+
+    .navbar-default .navbar-nav > li > a {
+        font-size: 16px;
+        /*font-weight:400;*/
+    }
+
+    .brandName {
+        font-family: inherit;
+    }
+
+    .display-element {
+        border-bottom: 1px solid #313131;
+
+        /*TODO: this should be the height of the */
+        /*max-height: 625px;*/
+
+        /* turning off the border */
+        /*border: 1px solid #5b5a5a;*/
+
+    }
+
+    .editFileButtons {
+        margin-top: 30px;
+    }
+
+    /* anything above this width */
+    @media (min-width: 1250px) {
+        body {
+            zoom: 1.15;
+        }
+
+        /*.postButton {*/
+        /*display: none !important;*/
+        /*}*/
+    }
+
+    .h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+        font-family: 'Helvetica Neue', 'Inter', Arial, sans-serif !important;
+    }
+
+    body {
+        font-family: 'Helvetica Neue', 'Inter', Arial, sans-serif !important;
+    }
+
+    /* anything above this width */
+    @media (min-width: 834px) {
+        .uploads {
+            padding: 0px 15px !important;
+        }
+    }
+
+    /* anything below this width */
+    @media (max-width: 834px) {
+        .uploads {
+            padding: 0px 0px !important;
+        }
+    }
+
+

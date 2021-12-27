@@ -5,9 +5,10 @@ const Student = require("../models/student");
 
 
 
-router.post("/student", async (req, res) => {
+router.post("/addstudent", async (req, res) => {
     try{
-        const user = new Student(req, body);
+        console.log(req.body);
+        const user = new Student(req.body);
         const createUser = await user.save();
         res.status(201).send(createUser);
     }catch(err){
@@ -17,7 +18,7 @@ router.post("/student", async (req, res) => {
  
 // // // read data 
 
-router.get("/student", async (req, res) => {
+router.get("/students", async (req, res) => {
     try{
         const studentsData = await Student.find();
         res.send(studentsData);
@@ -40,9 +41,19 @@ router.get("/student/:id", async (req, res) => {
                 res.send(studentData)
             };
 
-    }catch(err){
+    }catch(err){ 
         res.send(err);
     }
 });
 
+// const deleteDocument = async(_id) => {
+//     try{
+// const result = await Student.deleteOne({_id});
+// console.log(result);
+//     }catch(err){
+// console.log(err);
+//     }
+// }
+
+// deleteDocument("6134a85990a025b606756169");
 module.exports = router;

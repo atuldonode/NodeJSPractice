@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <link rel="stylesheet" href="/style.css">
+    <title>Apna Chat App</title>
+</head>
+
+<body>
+    <section class="chat__section">
+        <div class="brand">
+            <img height="40" src="/chat.png" alt="">
+            <h1>Hello,&nbsp;<span id="username_span"></span></h1>
+        </div>
+
+        <div class="message__area"></div>
+
+        <div>
+            <textarea id="textarea" cols="30" rows="1" placeholder="Enter your message here..."></textarea>
+
+        </div>
+    </section>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/client.js"></script>
+
+</body>
+
+</html>

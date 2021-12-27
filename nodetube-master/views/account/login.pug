@@ -1,0 +1,59 @@
+extends ../layout
+
+block content
+  .container
+    .page-header
+      div.needAnAccount(style="text-align:center")
+        h3.fw.text-center(style="display:inline-block") Still need an account? Try:
+        a(href="/signup")
+          h3.fw.text-center(style="display:inline-block;margin-left:5px;") Here
+        br
+        br
+
+      h3.center-block.text-center.fw Login To #{brandName}
+    form.form-horizontal(method='POST')
+      input(type='hidden', name='_csrf', value=_csrf)
+      .form-group
+        label.fw.loginHeader.col-sm-3.control-label(for='email') Email or Username
+        .col-sm-7
+          input.fw.loginHeader.form-control(name='email', id='email', placeholder='Email or Username', autofocus, required style="max-width:600px;")
+      .form-group
+        label.fw.loginHeader.col-sm-3.control-label(for='password') Password
+        .col-sm-7
+          input.fw.loginHeader.form-control(type='password', name='password', id='password', placeholder='Password', required style="max-width:600px;")
+      .form-group
+        .col-sm-offset-3.col-sm-7
+          button.fw.loginHeader.col-sm-3.btn.btn-primary(type='submit' style="border-radius:8px;width:122px;")
+            i.fw.loginHeader.fa.fa-user
+            | Login
+
+          // turn off forgot password, should expose it as an env var
+
+          // show the forgot your password button
+          if forgotEmailFunctionalityOn
+            a.btn.btn-link.fw(href='/forgot' style="font-size:17px") Forgot your password?
+      .form-group
+        .col-sm-12
+          hr
+
+          //p.center-block.text-center No account?
+          //  a(href="/signup" style="margin-left:8px;") Sign Up Here
+
+      //    a.btn.btn-block.btn-facebook.btn-social(href='/auth/facebook')
+      //      i.fa.fa-facebook
+      //      | Sign in with Facebook
+      //    a.btn.btn-block.btn-twitter.btn-social(href='/auth/twitter')
+      //      i.fa.fa-twitter
+      //      | Sign in with Twitter
+      //    a.btn.btn-block.btn-google.btn-social(href='/auth/google')
+      //      i.fa.fa-google-plus
+      //      | Sign in with Google
+      //    a.btn.btn-block.btn-github.btn-social(href='/auth/github')
+      //      i.fa.fa-github
+      //      | Sign in with GitHub
+      //    a.btn.btn-block.btn-linkedin.btn-social(href='/auth/linkedin')
+      //      i.fa.fa-linkedin
+      //      | Sign in with LinkedIn
+      //    a.btn.btn-block.btn-instagram.btn-social(href='/auth/instagram')
+      //      i.fa.fa-instagram
+      //      | Sign in with Instagram

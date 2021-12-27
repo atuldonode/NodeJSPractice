@@ -1,0 +1,220 @@
+script.
+
+  function getParameterByName(name, url) {
+    if (!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+            results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, " "));
+  }
+
+  /** functionality to skip forward automatically based on lastWatchedTime **/
+  var lastWatchedTime = '#{lastWatchedTime && lastWatchedTime.secondsWatched}';
+
+  var secondsToMoveFoward = '#{secondsToMoveForward}';
+
+  var v = document.getElementsByTagName("video") && document.getElementsByTagName("video")[0];
+
+  if(!v){
+    v = document.getElementsByTagName("audio") && document.getElementsByTagName("audio")[0];
+  }
+
+  var movedForward = false;
+
+  const amountOfSecondsToSkipForwardTo = window.getParameterByName('t');
+
+  var dontAutoplayBasedOnUpload = window.getParameterByName('u') == 't';
+
+  // this works properly because it runs right when the video has started
+  v.addEventListener("playing", async function (event) {
+    // the way this is setup, 't' will override lastWatchedTime
+
+    // skip forward for the 't' thing
+    if (amountOfSecondsToSkipForwardTo && !movedForward) {
+      player.currentTime = Number(amountOfSecondsToSkipForwardTo)
+
+      movedForward = true;
+    }
+
+    // if last watched time, move it forward
+    if (lastWatchedTime && !movedForward) {
+      player.currentTime = Number(lastWatchedTime)
+
+      // save in memory that we've skipped forward
+      movedForward = true;
+    }
+
+
+  }, true);
+
+  // TODO: set the lastWatchedTime to 0 when you finish a video/audio
+
+  /** functionality to skip forward automatically based on lastWatchedTime **/
+
+  var sensitive = #{upload.sensitive}
+
+  var autoplay = getParameterByName('autoplay');
+
+  var autoplay;
+  if(sensitive || autoplay == 'off'){
+    autoplay = false;
+  } else {
+    autoplay = true;
+  }
+
+  console.log('should autoplay ' + autoplay)
+
+  /** Freshly uploaded functionality **/
+
+  // if user had just uploaded it
+  // u=t is uploaded=true,
+  var dontAutoplayBasedOnUpload = "t" == window.getParameterByName("u");
+
+  var viewsAmount = '#{upload.views}';
+
+  viewsAmount = Number(viewsAmount);
+
+  // console.log(viewsAmount);
+
+  const shouldNotAutoPlayBasedOnViews = viewsAmount < 5;
+
+  // console.log(shouldNotAutoPlayBasedOnViews);
+  //
+  // console.log(dontAutoplayBasedOnUpload)
+
+  if ((dontAutoplayBasedOnUpload && shouldNotAutoPlayBasedOnViews) ||  !autoplay) {
+    autoplay = false;
+  } else {
+    autoplay = true;
+  }
+
+  /** Freshly uploaded functionality end **/
+
+
+  // TODO: add the t=12 parameter here
+
+  console.log('should autoplay ' + autoplay)
+
+  // make seek time five seconds if on wider displays
+  var seekTime = 10;
+  if ($(window).width() >= 668) {
+    seekTime = 5
+  }
+
+  var plyr_options = {
+    autoplay,
+    clickToPlay: true,
+    speed: {selected: 1, options: [0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2]},
+    controls: ['play-large', 'play', 'progress', 'current-time', 'duration', 'rewind', 'fast-forward', 'mute', 'volume', 'settings', 'pip', 'fullscreen', 'captions'],
+    settings: ['speed', 'captions', 'quality', 'loop'],
+    fullscreen: {iosNative: true},
+    seekTime
+  };
+
+  // Create the plyr instances - this defines players[0] as our primary player.
+  var players = Plyr.setup("#media_player", plyr_options);
+
+  var player = players[0];
+
+
+
+
+  player.on('playing', function(){
+
+    var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
+
+    // only hide button if it's on desktop
+    // once you start playing a video on desktop, hide the play button so when you pause it's not there anymore
+    if(width > 900){
+      $('button.plyr__control.plyr__control--overlaid').css('display', 'none');
+    }
+
+  })
+
+  players[0].on('ready', function (event) {
+
+    console.log(event);
+
+
+    if(secondsToMoveFoward){
+      player.currentTime = secondsToMoveFoward
+    }
+
+    console.log('last wached time');
+    console.log(Number(lastWatchedTime))
+
+
+    if(autoplay){
+      var playPromise = player.play();
+
+      //
+      if (playPromise !== undefined) {
+
+        // play promise is a thenable response, if it's not undefined
+        // try and then it, and if not then log the error and try and plan again
+        playPromise.then(function (event) {
+          console.log('running thenable');
+          console.log(event);
+        }).catch(function (error) {// Auto-play was prevented
+
+          console.log(error);
+          console.log('autoplay was prevented try again');
+          player.play();
+        });
+
+      }
+    } else {
+      console.log('dont run')
+
+
+
+      var playPromise = player.pause();
+
+      setTimeout(function(){
+        player.pause()
+      }, 150)
+    }
+
+    // disabling this play because it's playing on autoplay when uploading
+    // players[0].play()
+
+    // set video max-height to 620px
+    // $('.display-element').css('max-height', '620px');
+  });
+
+  var savedMaxHeight = 0;
+  var savedHeight = 0;
+
+  players[0].on('enterfullscreen', function (event) {
+
+    console.log('HEY SOMETHING!');
+
+    // savedMaxHeight = $('.plyr').css('max-height')
+    // savedHeight = $('.plyr').css('height')
+
+    // console.log(savedMaxHeight)
+
+    function addStyleAttribute($element, styleAttribute) {
+      $element.attr('style', $element.attr('style') + '; ' + styleAttribute);
+    }
+
+    //addStyleAttribute($('.plyr'), 'max-height: 100vh !important');
+    //addStyleAttribute($('.plyr'), 'height: 100vh !important');
+
+    // remove video max-height
+
+  });
+
+  var alreadyMovedOnPlay = false;
+
+  players[0].on('exitfullscreen', function (event) {
+    // add max height
+      //$('.plyr').css('max-height', savedMaxHeight)
+      //$('.plyr').css('height', savedHeight)
+  });
+
+  $("[data-plyr=seek]").css('cursor','pointer')
+
+  $("[data-plyr=volume]").css('cursor','pointer')

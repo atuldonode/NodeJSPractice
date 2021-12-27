@@ -1,0 +1,16 @@
+extends ../layout
+
+block content
+  .container
+    .col-sm-8.col-sm-offset-2
+      form(method='POST')
+        h2.fw Forgot Password
+        input(type='hidden', name='_csrf', value=_csrf)
+        .form-group
+          p.fw(style="font-size:16px") Enter your email address below and we will send you password reset instructions.
+          label.control-label.fw(for='email') Email
+          input.form-control(type='email', name='email', id='email', placeholder='Email', autofocus, required)
+        .form-group
+          button.btn.btn-primary(type='submit')
+            i.fa.fa-key(style="font-size:20px")
+            | Reset Password
