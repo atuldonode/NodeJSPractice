@@ -1,0 +1,11 @@
+{
+    "server": {
+        "port": 8080
+    },
+    "dbUrl": "mongodb://localhost:27017/orbit-mart",
+    "secretKey": "orbitmartclientproject",
+    "staticFilesUrl": "",
+    "uploadUrl": "public/uploads/",
+    "smsKey": "",
+    "NODE_ENVIR": "DEV"
+}
